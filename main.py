@@ -19,7 +19,13 @@ def V(gamma, clicks, left):
             expectation+= p3*(V(gamma+1,clicks+1,left-1)+10-b/2)
             bids_exp[b]= expectation
     max_exp= max(bids_exp.values())
-    print(max_exp)
     return max(bids_exp, key=bids_exp.get)
 
-print(V(10,10,1))
+
+def four(N): 
+    for L in range(0, N+2): 
+        for C in range(0, N+1-L): 
+            for y in range(0, C+1): 
+                opt_bid = V(y, C, L)
+                print("y:", y, " C:", C, " L:", L, ":::", opt_bid, " ")
+four(5)
