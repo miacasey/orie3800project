@@ -22,4 +22,4 @@ def V(gamma, clicks, left):
     print(max_exp)
     return max(bids_exp, key=bids_exp.get)
 
-print(V(0,10,1))
+print(V(10,10,1))
