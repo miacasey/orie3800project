@@ -26,14 +26,14 @@ bids_exp = {}
     # p2= (b/10)*(1-((alpha+gamma)/(alpha+beta+clicks)))
 max_bids= np.zeros((N+1,N+1,N+1))
 
-for l in range(0,N+1):
+for l in range(1,N+1):
     for c in range(0,N-l+1):
         for g in range(0,c+1):
             max_exp=0
             max_bid=0
             x= (alpha+g)/(alpha+beta+c)
             if (l==0):
-                max_bids[l,c,g]
+                max_bids[g,c,l]
             else:
                 for bid in range(0,101,1):
                     b=bid/10
@@ -41,11 +41,11 @@ for l in range(0,N+1):
                     p3= (b/10)*x
                     p2= (b/10)*(1-x)
                     # expectation = p1 + p2*(-b/2) + p3*(10-b/2)
-                    expectation = p1*max_bids[l-1,c,g] + p2*(max_bids[l-1,c+1,g]-b/2) + p3*(max_bids[l-1,c+1,g+1]+10-b/2)
+                    expectation = p1*max_bids[g,c,l-1] + p2*(max_bids[g,c+1,l-1]-b/2) + p3*(max_bids[g+1,c+1,l-1]+10-b/2)
                     if expectation > max_exp:
                         max_exp = expectation
-                        max_bids[l,c,g]
-                        max_bid= bid
+                        max_bid= b
+                        max_bids[g,c,l]= max_bid
 print(max_bids)
                 #expectation+= p1*V(gamma,clicks,left-1)
                 #expectation+= p2*(V(gamma,clicks+1,left-1)-b/2)
