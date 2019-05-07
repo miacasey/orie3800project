@@ -30,6 +30,7 @@ max_exps= np.zeros((N+1,N+1,N+1))
 for l in range(1,N+1):
     for c in range(0,N-l+1):
         for g in range(0,c+1):
+            print(l,c,g)
             max_exp=0
             max_bid=0
             x= (alpha+g)/(alpha+beta+c)
@@ -42,7 +43,7 @@ for l in range(1,N+1):
                     p3= (b/10)*x
                     p2= (b/10)*(1-x)
                     # expectation = p1 + p2*(-b/2) + p3*(10-b/2)
-                    expectation = p1*max_bids[g,c,l-1] + p2*(max_bids[g,c+1,l-1]-b/2) + p3*(max_bids[g+1,c+1,l-1]+10-b/2)
+                    expectation= p1*max_bids[g,c,l-1] + p2*(max_bids[g,c+1,l-1]-b/2) + p3*(max_bids[g+1,c+1,l-1]+10-b/2)
                     if expectation > max_exp:
                         max_exp = expectation
                         max_bid= b
@@ -75,14 +76,10 @@ print(max_exps)
 #     return(table)
 #
 # ##Number 4
-# def tabOptBid(N):
-#     for L in range(0, N+1):
-#         for C in range(0, N+1-L):
-#             for y in range(0, C+1):
-#                 opt_bid = V(y, C, L)
-#                 print("y:", y, " C:", C, " L:", L, ":::", opt_bid, " ")
-##tabOptBid(3)
+for L in range(1, N+1):
+    for C in range(0, N+1-L):
+        for y in range(0, C+1):
+            opt_bid = max_exps[y,C,L]
+            print("y:", y, " C:", C, " L:", L, ":::", opt_bid, " ")
 
-# print(makeTable(N))
-##print(V(10,10,2))
-#print(V(0,10,2))
+# ##
