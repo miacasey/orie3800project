@@ -19,18 +19,20 @@ def V(gamma, clicks, left):
             expectation+= p2*(V(gamma,clicks+1,left-1)-b/2)
             expectation+= p3*(V(gamma+1,clicks+1,left-1)+10-b/2)
             bids_exp[b]= expectation
+
     max_exp= max(bids_exp.values())
     return max_exp
 
 def makeTable(N):
     table= np.zeros((N,N,N))
-    for l in range(N):
-        for c in range(N-l):
-            for g in range(c):
+    for l in range(N,0,-1):
+        for c in range(N-l+1):
+            for g in range(c+1):
                 table[l,g,c]= V(g,c,l)
                 print(V(g,c,l))
     return(table)
 
-print(makeTable(N))
+# print(makeTable(N))
 print(V(10,10,2))
 print(V(0,10,2))
+print(V(0,0,5))
