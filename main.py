@@ -27,11 +27,14 @@ for l in range(1,N+1):
 print(max_bids)
 # Number 4
 for l in range(1,N+1):
+    rows = ['%d Clicks' % x for x in range(0,l)]
+    columns = ['%d Conversions' % y for y in range(0,l)]
     for c in range(0, N+1-l):
-        for g in range(0, c+1):
-            opt_bid = max_bids[l,c,g]
-            print("g:", g, " C:", c, " L:", l, ":::", opt_bid, " ")
+        for y in range(0, c+1):
+            print("y:", y, " C:", c, " L:", l, ":::", opt_bid, " ")
 
+rows = ['%d Clicks' % x for x in range(0,N+1)]
+columns = ['%d Conversions' % y for y in range(0,N+1)]
 
 # Number 5
 # initialize arrays for new N value
