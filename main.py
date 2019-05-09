@@ -24,12 +24,14 @@ for l in range(1,N+1):
             max_bids[l,c,g]= max_bid
             max_exps[l,c,g]= max_exp
 
+print(max_bids)
 # Number 4
-for l in range(N+1,0,-1):
+for l in range(1,N+1):
     for c in range(0, N+1-l):
-        for y in range(0, c+1):
-            opt_bid = max_bids[l,c,y]
-            print("y:", y, " C:", c, " L:", l, ":::", opt_bid, " ")
+        for g in range(0, c+1):
+            opt_bid = max_bids[l,c,g]
+            print("g:", g, " C:", c, " L:", l, ":::", opt_bid, " ")
+
 
 # Number 5
 # initialize arrays for new N value
@@ -56,6 +58,8 @@ for l in range(1,N+1):
 avg= []
 for n in range(1,N+1):
     avg.append(max_exps[n,0,0]/n)
+plt.xlabel('N')
+plt.ylabel('EV[opt] / N')
 plt.plot(avg)
 plt.show()
 
@@ -82,7 +86,10 @@ for l in range(1,N+1):
             max_exps[l,c,g]= max_exp
 # plotting difference
 deltas= []
-for i in range (1,51):
+for i in range (1,N+1):
     deltas.append((max_bids[i,0,0])-5)
+
+plt.xlabel('N')
+plt.ylabel('∆ L')
 plt.plot(deltas)
 plt.show()
