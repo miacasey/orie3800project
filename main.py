@@ -83,6 +83,6 @@ for l in range(1,N+1):
 # plotting difference
 deltas= []
 for i in range (1,51):
-    deltas.append((max_bids[l,0,0])-5)
+    deltas.append((max_bids[i,0,0])-5)
 plt.plot(deltas)
 plt.show()
