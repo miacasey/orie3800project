@@ -21,20 +21,27 @@ for l in range(1,N+1):
                 if expectation > max_exp:
                     max_exp = expectation
                     max_bid= b
-            max_bids[l,c,g]= max_bid
+            max_bids[l,c,g]= round(max_bid,1)
             max_exps[l,c,g]= max_exp
 
 print(max_bids)
-# Number 4
-for l in range(1,N+1):
-    rows = ['%d Clicks' % x for x in range(0,l)]
-    columns = ['%d Conversions' % y for y in range(0,l)]
-    for c in range(0, N+1-l):
-        for y in range(0, c+1):
-            print("y:", y, " C:", c, " L:", l, ":::", opt_bid, " ")
 
-rows = ['%d Clicks' % x for x in range(0,N+1)]
-columns = ['%d Conversions' % y for y in range(0,N+1)]
+# Number 4
+# create tables
+for l in range(1,N+1):
+    rows = ['%d C' % x for x in range(0,N+1)]
+    columns = ['%d γ' % y for y in range(0,N+1)]
+            #print("y:", y, " C:", c, " L:", l, ":::", opt_bid, " ")
+    the_table = plt.table(cellText=max_bids[l],
+                      rowLabels=rows,
+                      colLabels=columns,
+                      loc='center'
+    )
+    plt.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
+    plt.tick_params(axis='y', which='both', right=False, left=False, labelleft=False)
+    for pos in ['right','top','bottom','left']:
+        plt.gca().spines[pos].set_visible(False)
+    plt.show()
 
 # Number 5
 # initialize arrays for new N value
