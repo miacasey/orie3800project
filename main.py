@@ -82,7 +82,7 @@ for l in range(1,N+1):
             max_exps[l,c,g]= max_exp
 # plotting difference
 deltas= []
-for i in range (1,51):
-    deltas.append((max_bids[l,0,0])-5)
+for i in range (1,N+1):
+    deltas.append((max_bids[i,0,0])-5)
 plt.plot(deltas)
 plt.show()
